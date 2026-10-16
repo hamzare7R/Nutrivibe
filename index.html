@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title data-i18n="pageTitle">Nutrivibe | وجبات صحية للرياضيين</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lalezar&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Nutrivibe"><span>Nutri<b>vibe</b></span><small data-i18n="logoSub">نيوتريفايب</small></a>
+    <nav class="links" aria-label="التنقل">
+      <a href="#calc" data-i18n="navCalc">الحاسبة</a>
+      <a href="#meals" data-i18n="navMeals">الوجبات</a>
+      <a href="#how" data-i18n="navHow">كيف نعمل</a>
+    </nav>
+    
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <!-- أزرار تبديل اللغة -->
+      <div class="language-switcher" style="display: flex; gap: 4px;">
+          <button onclick="switchLanguage('ar')" id="langArBtn" style="padding: 4px 8px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); cursor: pointer; font-size: 13px;">عربي</button>
+          <button onclick="switchLanguage('en')" id="langEnBtn" style="padding: 4px 8px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); cursor: pointer; font-size: 13px;">English</button>
+      </div>
+
+      <button class="cart-btn" id="openCart" aria-label="فتح السلة">
+        <span data-i18n="cartText">السلة</span><span class="count num" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero" id="calc">
+  <div class="wrap hero-grid">
+    <div>
+      <h1 data-i18n="heroTitle">وجبات مضبوطة حسب هدفك الرياضي</h1>
+      <p class="lead" data-i18n="heroLead">أدخل معلوماتك، وشاهد السعرات الحرارية والماكروز الخاصة بك فوراً. ثم اختر الوجبات والحصص التي تناسب احتياجاتك، ونوصلها إلى باب منزلك في طنجة.</p>
+      <div class="hero-meta">
+        <span class="pill"><i class="dot p"></i><span data-i18n="macroProtein">بروتين</span></span>
+        <span class="pill"><i class="dot c"></i><span data-i18n="macroCarb">كربوهيدرات</span></span>
+        <span class="pill"><i class="dot f"></i><span data-i18n="macroFat">دهون</span></span>
+      </div>
+    </div>
+
+    <div class="calc" role="group" aria-labelledby="calcTitle">
+      <h2 id="calcTitle" data-i18n="calcTitleText">حاسبة السعرات والماكروز</h2>
+      <p class="sub" data-i18n="calcSub">تتحدث النتيجة مباشرة مع كل تعديل.</p>
+      <div class="fields">
+        <div class="field wide">
+          <span class="lab" id="gLab" data-i18n="labelGender">الجنس</span>
+          <div class="seg" role="radiogroup" aria-labelledby="gLab">
+            <input type="radio" name="sex" id="sexM" value="m" checked><label for="sexM" data-i18n="genderMale">ذكر</label>
+            <input type="radio" name="sex" id="sexF" value="f"><label for="sexF" data-i18n="genderFemale">أنثى</label>
+          </div>
+        </div>
+        <div class="field"><label for="age" data-i18n="labelAge">العمر</label><input type="number" id="age" min="14" max="90" value="25" inputmode="numeric"></div>
+        <div class="field"><label for="weight" data-i18n="labelWeight">الوزن (كغ)</label><input type="number" id="weight" min="35" max="200" value="75" inputmode="decimal"></div>
+        <div class="field"><label for="height" data-i18n="labelHeight">الطول (سم)</label><input type="number" id="height" min="130" max="230" value="175" inputmode="numeric"></div>
+        <div class="field wide">
+          <label for="activity" data-i18n="labelActivity">النشاط البدني</label>
+          <select id="activity">
+            <option value="1.2" data-i18n="act1">قليل: جلوس طوال اليوم غالباً</option>
+            <option value="1.375" data-i18n="act2">خفيف: تمرين من 1 إلى 3 مرات أسبوعياً</option>
+            <option value="1.55" selected data-i18n="act3">متوسط: تمرين من 3 إلى 5 مرات أسبوعياً</option>
+            <option value="1.725" data-i18n="act4">عالي: تمرين من 6 إلى 7 مرات أسبوعياً</option>
+          </select>
+        </div>
+        <div class="field wide">
+          <span class="lab" id="goalLab" data-i18n="labelGoal">الهدف</span>
+          <div class="seg" role="radiogroup" aria-labelledby="goalLab">
+            <input type="radio" name="goal" id="gCut" value="cut"><label for="gCut" data-i18n="goalCut">تنشيف (خسارة دهون)</label>
+            <input type="radio" name="goal" id="gMain" value="maintain" checked><label for="gMain" data-i18n="goalMain">ثبات الوزن</label>
+            <input type="radio" name="goal" id="gBulk" value="bulk"><label for="gBulk" data-i18n="goalBulk">تضخيم (بناء عضلات)</label>
+          </div>
+        </div>
+        <div class="field wide">
+          <span class="lab" id="mLab" data-i18n="labelMealsCount">عدد الوجبات في اليوم</span>
+          <div class="seg" role="radiogroup" aria-labelledby="mLab">
+            <input type="radio" name="mpd" id="m3" value="3" checked><label for="m3">3 <span data-i18n="mealsWord">وجبات</span></label>
+            <input type="radio" name="mpd" id="m4" value="4"><label for="m4">4 <span data-i18n="mealsWord">وجبات</span></label>
+            <input type="radio" name="mpd" id="m5" value="5"><label for="m5">5 <span data-i18n="mealsWord">وجبات</span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="result" aria-live="polite">
+        <div class="ring">
+          <svg viewBox="0 0 120 120" id="bigRing" role="img" aria-label="توزيع المغذيات الكبرى"></svg>
+          <div class="mid"><strong class="num" id="kcalOut">0</strong><span data-i18n="kcalPerDay">سعرة في اليوم</span></div>
+        </div>
+        <div class="macros">
+          <div class="macro"><span><i class="dot p"></i> <span data-i18n="macroProtein">بروتين</span></span><div class="bar"><i id="barP" style="background:var(--pro)"></i></div><b class="num" id="pOut">0 غ</b></div>
+          <div class="macro"><span><i class="dot c"></i> <span data-i18n="macroCarb">كربوهيدرات</span></span><div class="bar"><i id="barC" style="background:var(--carb)"></i></div><b class="num" id="cOut">0 غ</b></div>
+          <div class="macro"><span><i class="dot f"></i> <span data-i18n="macroFat">دهون</span></span><div class="bar"><i id="barF" style="background:var(--fat)"></i></div><b class="num" id="fOut">0 غ</b></div>
+        </div>
+        <div class="permeal"><span data-i18n="perSingleMeal">الوجبة الواحدة تقريباً:</span><b><span class="num" id="pmK">0</span> <span data-i18n="kcalShort">سعرة</span>، <span class="num" id="pmP">0</span> <span data-i18n="gramProt">غ بروتين</span></b></div>
+      </div>
+      <button class="cta" id="seeMeals" data-i18n="seeMealsBtn">عرض الوجبات المناسبة لي</button>
+      <p class="note" data-i18n="calcNote">التقدير مبني على معادلة Mifflin-St Jeor، وهو تقدير عام ولا يعد بديلاً لاستشارة أخصائي تغذية معتمد.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="meals" style="padding-top:24px">
+  <div class="wrap">
+    <div class="head-row">
+      <div>
+        <h2 data-i18n="mealsHeader">الوجبات</h2>
+        <p id="mealsHint" data-i18n="mealsHintInit">اختر الحصة التي تناسبك وأضف البروتين إن رغبت. يتم احتساب السعرات والماكروز تلقائياً بناءً على اختيارك.</p>
+      </div>
+      <div class="chips" role="group" aria-label="تصفية الوجبات">
+        <button class="chip" data-filter="all" aria-pressed="true" data-i18n="filterAll">الكل</button>
+        <button class="chip" data-filter="cut" aria-pressed="false" data-i18n="filterCut">تنشيف</button>
+        <button class="chip" data-filter="maintain" aria-pressed="false" data-i18n="filterMaintain">ثبات</button>
+        <button class="chip" data-filter="bulk" aria-pressed="false" data-i18n="filterBulk">تضخيم</button>
+      </div>
+    </div>
+    <div class="grid" id="mealGrid"></div>
+  </div>
+</section>
+
+<section class="block how" id="how">
+  <div class="wrap">
+    <h2 style="font-size:clamp(30px,4.2vw,44px)" data-i18n="howHeader">كيف نعمل</h2>
+    <div class="steps">
+      <div class="step"><h3 data-i18n="step1Title">حسب احتياجك</h3><p data-i18n="step1Desc">أدخل وزنك، طولك، وهدفك في الحاسبة لنتعرف على سعراتك ومغذياتك بدقة.</p></div>
+      <div class="step"><h3 data-i18n="step2Title">ركّب طلبك</h3><p data-i18n="step2Desc">اختر الوجبات، حدد حجم الحصة المناسبة، وأضف بروتيناً إضافياً إذا احتجت.</p></div>
+      <div class="step"><h3 data-i18n="step3Title">تواصل معنا</h3><p data-i18n="step3Desc">املأ معلومات التوصيل وأرسل الطلب مباشرة عبر واتساب لنؤكد معك وقت الاستلام.</p></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span data-i18n="footerText">نيوتريفايب، وجبات صحية للرياضيين في طنجة</span>
+    <span data-i18n="currencyText">الأسعار بالدرهم المغربي</span>
+    <span class="edd" data-i18n="currencyText2">مشروع تجريبي من انتاج حمزة 7ر</span>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle" aria-hidden="true">
+  <header><h2 id="cartTitle" data-i18n="cartHeader">السلة</h2><button class="x" id="closeCart" aria-label="إغلاق السلة">×</button></header>
+  <div class="dbody" id="dbody"></div>
+  <div class="dfoot" id="dfoot"></div>
+</aside>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
